@@ -1,12 +1,17 @@
 const mongoose = require("mongoose");
 const express = require("express");
-const app = express();
+
 const usersRoutes = require("./routes/userRoute");
-const port = process.env.PROT || 3000;
+const imageOpRoutes = require("./routes/imageOpRoutes");
+
+const app = express();
 
 app.use(express.json());
 
 app.use("/users", usersRoutes);
+app.use("/imageOps", imageOpRoutes);
+
+const port = process.env.PROT || 3000;
 
 mongoose.set("strictQuery", false);
 mongoose
