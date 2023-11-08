@@ -1,4 +1,5 @@
-require('dotenv').config();
+require("dotenv").config();
+
 const mongoose = require("mongoose");
 const express = require("express");
 
@@ -11,6 +12,9 @@ app.use(express.json());
 
 app.use("/users", usersRoutes);
 app.use("/imageOps", imageOpRoutes);
+
+// Static route for uploaded images
+app.use("/uploads", express.static("uploads"));
 
 const port = process.env.PROT || 3000;
 
