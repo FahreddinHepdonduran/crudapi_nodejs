@@ -13,8 +13,9 @@ app.use(express.json());
 app.use("/users", usersRoutes);
 app.use("/imageOps", imageOpRoutes);
 
-// Static route for uploaded images
+// Static route for images
 app.use("/uploads", express.static("uploads"));
+app.use("/outputImages", express.static("outputImages"));
 
 const port = process.env.PROT || 3000;
 
