@@ -31,11 +31,28 @@ const createUser = async (req, res) => {
   try {
     const newUser = await User.create(userData);
     console.log("user created!!!");
-    res.status(201).json(newUser);
+    res.status(200).json(newUser);
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ error: "Error creating user" });
     console.log("Error Creating User");
+  }
+};
+
+const loginUser = async (req, res) => {
+  const userData = req.body;
+
+  try {
+    const user = await User.findOne(userData);
+
+    if (!user) {
+      return res.status(401).json({ error: "Invalid username or password" });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -77,6 +94,7 @@ module.exports = {
   getAllUsers,
   getUserById,
   createUser,
+  loginUser,
   updateUser,
   deleteUser,
 };
